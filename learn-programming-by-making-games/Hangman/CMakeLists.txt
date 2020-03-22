@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(sample1)
+project(Hangman)
 
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME} Hangman.cpp)
 
 # target_link_libraries(${PROJECT_NAME} SDL2main SDL2)
 
