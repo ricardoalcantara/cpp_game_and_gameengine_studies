@@ -16,7 +16,6 @@ bool Game::IsRunning() const
     return isRunning;
 }
 
-// sf::RectangleShape shape(sf::Vector2f(10, 10));
 void Game::Initialize(int width, int height)
 {
     window = new sf::RenderWindow(sf::VideoMode(width, height), "My window");
@@ -27,9 +26,18 @@ void Game::Initialize(int width, int height)
     else
         window->setFramerateLimit(0);
 
-    isRunning = true;
+    LoadLevel(0);
 
-    // shape.setFillColor(sf::Color(255, 255, 255, 255));
+    isRunning = true;
+}
+
+void Game::LoadLevel(int)
+{
+    Entity &entity1(manager.AddEntity("projectile"));
+    entity1.AddComponent<TransformComponent>(0.0f, 0.0f, 20.0f, 20.0f, 32.0f, 32.0f, 1.0f);
+
+    Entity &entity2(manager.AddEntity("projectile"));
+    entity2.AddComponent<TransformComponent>(0.0f, 0.0f, 20.0f, 0.0f, 32.0f, 32.0f, 1.0f);
 }
 
 void Game::ProcessInput()
@@ -61,19 +69,16 @@ void Game::ProcessInput()
     }
 }
 
-// sf::Vector2f projectilePos;
-// sf::Vector2f projectileVel(50, 50);
-
 void Game::Update()
 {
     sf::Time elapsed = clock.restart();
     float delta = elapsed.asSeconds();
     delta = (delta > 0.5f) ? 0.5f : delta;
 
-    // projectilePos += projectileVel * delta;
-    // shape.setPosition(projectilePos);
+    if (showFps)
+        ShowFPS(delta);
 
-    if (showFps) ShowFPS(delta);
+    manager.Update(delta);
 }
 
 void Game::ShowFPS(float delta)
@@ -95,9 +100,10 @@ void Game::Render()
     window->clear(sf::Color(21, 21, 21, 255));
 
     // draw everything here...
-    // window->draw(...);
-    // window->draw(shape);
-
+    if (manager.HasEntities())
+    {
+        manager.Render(*window);
+    }
     // end the current frame
     window->display();
 }
