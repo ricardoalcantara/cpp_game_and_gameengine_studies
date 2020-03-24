@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(2dgameengine)
+project(2dgameengine CXX)
 
 # Turn on the ability to create folders to organize projects (.vcproj)
 # It creates "CMakePredefinedTargets" folder by default and adds CMake
@@ -29,14 +29,16 @@ include_directories(src/
                     ${LIB}/lua-5.3.5/src
                     ${LIB}/SFML-2.5.1/include)
 
-# file(GLOB VENDORS_SOURCES ${SRC_C_FILES} ${SRC_H_FILES})
-file(GLOB PROJECT_HEADERS src/*.h)
-file(GLOB PROJECT_SOURCES src/*.cpp)
+file(GLOB PROJECT_HEADERS
+                        src/*.h)
+file(GLOB PROJECT_SOURCES
+                        src/*.cpp)
 
 add_executable(${PROJECT_NAME} 
-                # ${VENDORS_SOURCES}
                 ${PROJECT_SOURCES}
                 ${PROJECT_HEADERS})
+
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 target_link_libraries(${PROJECT_NAME}
                         LuaLib
@@ -44,6 +46,7 @@ target_link_libraries(${PROJECT_NAME}
                         sfml-window
                         sfml-audio
                         sfml-system)
+
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

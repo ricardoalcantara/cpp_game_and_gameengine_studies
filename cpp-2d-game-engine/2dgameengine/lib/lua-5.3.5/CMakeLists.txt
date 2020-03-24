@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(lua)
+project(lua C)
 
 set ( LUA_RUNTIME_SOURCES 
     src/lapi.c
@@ -65,6 +65,9 @@ set ( LUA_RUNTIME_SOURCES
     src/lzio.h
 )
 
-add_library( LuaLib SHARED ${LUA_RUNTIME_SOURCES} )
+add_library( LuaLib ${LUA_RUNTIME_SOURCES} )
+
+# https://github.com/LuaDist/lua/blob/lua-5.1/CMakeLists.txt
+set_target_properties ( LuaLib PROPERTIES COMPILE_DEFINITIONS LUA_BUILD_AS_DLL )
 
 target_include_directories ( LuaLib PUBLIC "${PROJECT_SOURCE_DIR}/src")
