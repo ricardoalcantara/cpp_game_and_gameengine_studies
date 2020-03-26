@@ -3,7 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "EntityManager.h"
-#include "Components/TransformComponent.h"
+
+class AssetManager;
 
 class Game
 {
@@ -12,7 +13,6 @@ private:
     sf::RenderWindow *window = nullptr;
     sf::Clock clock;
     EntityManager manager;
-
     float fps = 0;
     float fpsDelta = 0;
     bool lockFps = true;
@@ -20,6 +20,9 @@ private:
 
 private:
     void Game::ShowFPS(float delta);
+
+public:
+    static AssetManager *assetManager;
 
 public:
     Game();

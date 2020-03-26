@@ -5,11 +5,17 @@ https://www.udemy.com/course/cpp-2d-game-engine
 
 ## Linux
 
-sudo apt install \
-libx11-dev \
-xorg-dev \
-freeglut3-dev \
-libudev-dev \
-libopenal-dev \
-libvorbis-dev \
-libflac-dev
+https://github.com/SFML/SFML/wiki/Tutorial%3A-Installing-SFML-dependencies
+
+```bash
+apt-get install         \
+    libfreetype6-dev    \
+    libx11-dev          \
+    libxrandr-dev       \
+    libgl1-mesa-dev     \
+    libudev-dev         \
+    libopenal-dev       \
+    libflac-dev         \
+    libogg-dev          \
+    libvorbis-dev -y
+```

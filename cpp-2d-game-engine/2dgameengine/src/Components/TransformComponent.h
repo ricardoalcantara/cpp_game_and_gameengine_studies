@@ -13,7 +13,7 @@ public:
     float width;
     float height;
     float scale;
-    sf::RectangleShape shape;
+    // sf::RectangleShape shape;
 
 public:
     TransformComponent(float posX, float posY, float velX, float velY, float w, float h, float s)
@@ -24,8 +24,8 @@ public:
         height = h;
         scale = s;
 
-        shape = sf::RectangleShape(sf::Vector2f(width, height));
-        shape.setFillColor(sf::Color(255, 255, 255, 255));
+        // shape = sf::RectangleShape(sf::Vector2f(width, height));
+        // shape.setFillColor(sf::Color(255, 255, 255, 255));
     }
 
     virtual void Initialize() override
@@ -35,12 +35,12 @@ public:
     virtual void Update(float delta) override
     {
         position += velocity * delta;
-        shape.setPosition(position);
+        // shape.setPosition(position);
     }
 
-    virtual void Render(sf::RenderWindow &window) override
+    virtual void Render(sf::RenderWindow &) override
     {
-        window.draw(shape);
+        // window.draw(shape);
     }
 };
 #endif

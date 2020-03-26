@@ -1,6 +1,13 @@
 #include <iostream>
 #include "Constants.h"
 #include "Game.h"
+#include "AssetManager.h"
+
+#include "Components/TransformComponent.h"
+#include "Components/SpriteComponent.h"
+
+static EntityManager manager;
+AssetManager *Game::assetManager = new AssetManager(&::manager);
 
 Game::Game()
 {
@@ -33,11 +40,21 @@ void Game::Initialize(int width, int height)
 
 void Game::LoadLevel(int)
 {
-    Entity &entity1(manager.AddEntity("projectile"));
-    entity1.AddComponent<TransformComponent>(0.0f, 0.0f, 20.0f, 20.0f, 32.0f, 32.0f, 1.0f);
+    assetManager->AddTexture("tank-image", "assets/images/tank-big-right.png");
+    assetManager->AddTexture("chopper-image", "assets/images/chopper-spritesheet.png");
+    assetManager->AddTexture("radar-image", "assets/images/radar.png");
 
-    Entity &entity2(manager.AddEntity("projectile"));
-    entity2.AddComponent<TransformComponent>(0.0f, 0.0f, 20.0f, 0.0f, 32.0f, 32.0f, 1.0f);
+    Entity &tankEntity(manager.AddEntity("Tank"));
+    tankEntity.AddComponent<TransformComponent>(0.0f, 0.0f, 20.0f, 20.0f, 32.0f, 32.0f, 1.0f);
+    tankEntity.AddComponent<SpriteComponent>("tank-image");
+
+    Entity &chopperEntity(manager.AddEntity("Chopper"));
+    chopperEntity.AddComponent<TransformComponent>(240.0f, 106.0f, 0.0f, 0.0f, 32.0f, 32.0f, 1.0f);
+    chopperEntity.AddComponent<SpriteComponent>("chopper-image", 2, 0.1f, true, false);
+
+    Entity &radarEntity(manager.AddEntity("Radar"));
+    radarEntity.AddComponent<TransformComponent>(720.0f, 15.0f, 0.0f, 0.0f, 64.0f, 64.0f, 1.0f);
+    radarEntity.AddComponent<SpriteComponent>("radar-image", 8, 0.2f, false, true);
 }
 
 void Game::ProcessInput()
