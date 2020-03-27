@@ -5,6 +5,7 @@
 
 #include "Components/TransformComponent.h"
 #include "Components/SpriteComponent.h"
+#include "Components/KeyboardControlComponent.h"
 
 static EntityManager manager;
 AssetManager *Game::assetManager = new AssetManager(&::manager);
@@ -45,15 +46,16 @@ void Game::LoadLevel(int)
     assetManager->AddTexture("radar-image", "assets/images/radar.png");
 
     Entity &tankEntity(manager.AddEntity("Tank"));
-    tankEntity.AddComponent<TransformComponent>(0.0f, 0.0f, 20.0f, 20.0f, 32.0f, 32.0f, 1.0f);
+    tankEntity.AddComponent<TransformComponent>(0.0f, 0.0f, 1.0f, 1.0f, 20.0f, 32.0f, 32.0f, 1.0f);
     tankEntity.AddComponent<SpriteComponent>("tank-image");
 
     Entity &chopperEntity(manager.AddEntity("Chopper"));
-    chopperEntity.AddComponent<TransformComponent>(240.0f, 106.0f, 0.0f, 0.0f, 32.0f, 32.0f, 1.0f);
+    chopperEntity.AddComponent<TransformComponent>(240.0f, 106.0f, 0.0f, 0.0f, 80.0f, 32.0f, 32.0f, 1.0f);
     chopperEntity.AddComponent<SpriteComponent>("chopper-image", 2, 0.1f, true, false);
+    chopperEntity.AddComponent<KeyboardControlComponent>();
 
     Entity &radarEntity(manager.AddEntity("Radar"));
-    radarEntity.AddComponent<TransformComponent>(720.0f, 15.0f, 0.0f, 0.0f, 64.0f, 64.0f, 1.0f);
+    radarEntity.AddComponent<TransformComponent>(720.0f, 15.0f, 0.0f, 0.0f, 0.0f, 64.0f, 64.0f, 1.0f);
     radarEntity.AddComponent<SpriteComponent>("radar-image", 8, 0.2f, false, true);
 }
 
