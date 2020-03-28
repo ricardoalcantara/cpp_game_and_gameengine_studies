@@ -68,6 +68,9 @@ set ( LUA_RUNTIME_SOURCES
 add_library( LuaLib ${LUA_RUNTIME_SOURCES} )
 
 # https://github.com/LuaDist/lua/blob/lua-5.1/CMakeLists.txt
-set_target_properties ( LuaLib PROPERTIES COMPILE_DEFINITIONS LUA_BUILD_AS_DLL )
+
+if ( WIN32 AND NOT CYGWIN )
+    set_target_properties ( LuaLib PROPERTIES COMPILE_DEFINITIONS LUA_BUILD_AS_DLL )
+endif ( )
 
 target_include_directories ( LuaLib PUBLIC "${PROJECT_SOURCE_DIR}/src")

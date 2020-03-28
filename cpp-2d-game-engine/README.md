@@ -19,3 +19,6 @@ apt-get install         \
     libogg-dev          \
     libvorbis-dev -y
 ```
+
+LUA but not for lib
+apt install libreadline-dev

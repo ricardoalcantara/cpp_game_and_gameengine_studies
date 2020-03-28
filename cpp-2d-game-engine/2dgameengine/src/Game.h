@@ -19,7 +19,7 @@ private:
     bool showFps = false;
 
 private:
-    void Game::ShowFPS(float delta);
+    void ShowFPS(float delta);
 
 public:
     static AssetManager *assetManager;

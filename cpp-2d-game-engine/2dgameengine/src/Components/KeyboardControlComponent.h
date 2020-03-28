@@ -2,6 +2,7 @@
 #define KEYBOARDCONTROLCOMPONENT_H
 
 #include <SFML/Graphics.hpp>
+#include <cmath>
 
 #include "Component.h"
 #include "Components/TransformComponent.h"
