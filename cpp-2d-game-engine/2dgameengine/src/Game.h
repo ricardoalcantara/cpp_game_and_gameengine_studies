@@ -15,14 +15,15 @@ private:
     EntityManager manager;
     float fps = 0;
     float fpsDelta = 0;
-    bool lockFps = true;
-    bool showFps = false;
+    bool lockFps = false;
+    bool showFps = true;
 
 private:
     void ShowFPS(float delta);
 
 public:
     static AssetManager *assetManager;
+    const char *WINDOW_GAME_TITLE = "2D Game Engine";
 
 public:
     Game();

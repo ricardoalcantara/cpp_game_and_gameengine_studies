@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream>
+
 #include "Constants.h"
 #include "Game.h"
 #include "AssetManager.h"
@@ -26,7 +28,7 @@ bool Game::IsRunning() const
 
 void Game::Initialize(int width, int height)
 {
-    window = new sf::RenderWindow(sf::VideoMode(width, height), "My window");
+    window = new sf::RenderWindow(sf::VideoMode(width, height), WINDOW_GAME_TITLE);
     clock.restart();
 
     if (lockFps)
@@ -104,7 +106,10 @@ void Game::ShowFPS(float delta)
 {
     if (fpsDelta >= 1.0)
     {
-        std::cout << fps << std::endl;
+        std::stringstream sstm;
+        sstm << WINDOW_GAME_TITLE << " - " << fps;
+        window->setTitle(sstm.str());
+        // std::cout << fps << std::endl;
         fpsDelta = 0.0;
         fps = 0;
     }
