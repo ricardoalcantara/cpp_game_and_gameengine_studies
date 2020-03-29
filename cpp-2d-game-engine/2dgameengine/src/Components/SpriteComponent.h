@@ -2,7 +2,6 @@
 #define SPRITECOMPONENT_H
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include "Component.h"
 #include "Game.h"
 #include "Animation.h"
@@ -76,12 +75,11 @@ public:
 
     void SetTexture(std::string assetTextureId)
     {
-        std::cout << assetTextureId << std::endl;
         texture = Game::assetManager->GetTexture(assetTextureId);
         sprite = new sf::Sprite(*texture);
     }
 
-    virtual void Initialize() override
+    void Initialize() override
     {
         if (owner->HasComponent<TransformComponent>())
         {
@@ -91,7 +89,7 @@ public:
         }
     }
 
-    virtual void Update(float delta) override
+    void Update(float delta) override
     {
         if (transform == nullptr)
             return;
@@ -115,7 +113,7 @@ public:
         sprite->setPosition(transform->position);
     }
 
-    virtual void Render(sf::RenderWindow &window) override
+    void Render(sf::RenderWindow &window) override
     {
         window.draw(*sprite);
     }

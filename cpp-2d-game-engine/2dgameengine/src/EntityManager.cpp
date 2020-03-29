@@ -1,4 +1,5 @@
 #include "EntityManager.h"
+#include <iostream>
 
 void EntityManager::ClearData()
 {
@@ -31,6 +32,7 @@ bool EntityManager::HasEntities()
 
 Entity &EntityManager::AddEntity(std::string entityName)
 {
+    std::cout << "Entity created: " << entityName << std::endl;
     Entity *entity = new Entity(*this, entityName);
     entities.emplace_back(entity);
     return *entity;

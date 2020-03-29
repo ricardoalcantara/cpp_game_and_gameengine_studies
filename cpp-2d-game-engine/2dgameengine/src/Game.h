@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "EntityManager.h"
 
+extern EntityManager manager;
+
 class AssetManager;
 
 class Game
@@ -12,7 +14,6 @@ private:
     bool isRunning;
     sf::RenderWindow *window = nullptr;
     sf::Clock clock;
-    EntityManager manager;
     float fps = 0;
     float fpsDelta = 0;
     bool lockFps = false;

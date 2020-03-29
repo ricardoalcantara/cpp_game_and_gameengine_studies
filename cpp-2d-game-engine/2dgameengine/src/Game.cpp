@@ -4,12 +4,13 @@
 #include "Constants.h"
 #include "Game.h"
 #include "AssetManager.h"
+#include "Map.h"
 
 #include "Components/TransformComponent.h"
 #include "Components/SpriteComponent.h"
 #include "Components/KeyboardControlComponent.h"
 
-static EntityManager manager;
+EntityManager manager;
 AssetManager *Game::assetManager = new AssetManager(&::manager);
 
 Game::Game()
@@ -46,6 +47,10 @@ void Game::LoadLevel(int)
     assetManager->AddTexture("tank-image", "assets/images/tank-big-right.png");
     assetManager->AddTexture("chopper-image", "assets/images/chopper-spritesheet.png");
     assetManager->AddTexture("radar-image", "assets/images/radar.png");
+    assetManager->AddTexture("jungle-tiletexture", "assets/tilemaps/jungle.png");
+
+    Map map("jungle-tiletexture", 2, 32);
+    map.LoadMap("assets/tilemaps/jungle.map", 25, 20);
 
     Entity &tankEntity(manager.AddEntity("Tank"));
     tankEntity.AddComponent<TransformComponent>(0.0f, 0.0f, 1.0f, 1.0f, 20.0f, 32.0f, 32.0f, 1.0f);
@@ -59,6 +64,11 @@ void Game::LoadLevel(int)
     Entity &radarEntity(manager.AddEntity("Radar"));
     radarEntity.AddComponent<TransformComponent>(720.0f, 15.0f, 0.0f, 0.0f, 0.0f, 64.0f, 64.0f, 1.0f);
     radarEntity.AddComponent<SpriteComponent>("radar-image", 8, 0.2f, false, true);
+
+    for (auto &entity : manager.GetEntities())
+    {
+        std::cout << "List entity " << entity->name << std::endl;
+    }
 }
 
 void Game::ProcessInput()
