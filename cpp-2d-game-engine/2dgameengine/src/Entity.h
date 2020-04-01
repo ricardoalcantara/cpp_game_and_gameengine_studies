@@ -6,6 +6,7 @@
 #include <map>
 #include <string>
 #include "Component.h"
+#include "Constants.h"
 
 class EntityManager;
 
@@ -19,10 +20,11 @@ private:
 
 public:
     std::string name;
+    LayerType layer;
 
 public:
     Entity(EntityManager &manager);
-    Entity(EntityManager &manager, std::string name);
+    Entity(EntityManager &manager, std::string name, LayerType layer);
     void Initialize();
     void Update(float delta);
     void Render(sf::RenderWindow &window);

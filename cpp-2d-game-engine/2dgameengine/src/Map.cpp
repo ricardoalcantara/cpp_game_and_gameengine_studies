@@ -8,7 +8,7 @@ Map::Map(std::string textureId, int scale, int tileSize)
     this->textureId = textureId;
     this->scale = scale;
     this->tileSize = tileSize;
-    this->tileMap = &manager.AddEntity("Tilemap");
+    this->tileMap = &manager.AddEntity("Tilemap", TILEMAP_LAYER);
 }
 
 Map::~Map()

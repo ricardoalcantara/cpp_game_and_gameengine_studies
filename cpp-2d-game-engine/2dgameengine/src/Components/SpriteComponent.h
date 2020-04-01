@@ -13,7 +13,6 @@ private:
     sf::Texture *texture;
     sf::Sprite *sprite;
     sf::Vector2f position;
-    sf::IntRect rect;
 
     bool isAnimated;
     int numFrames;
@@ -24,6 +23,9 @@ private:
     std::map<std::string, Animation> animations;
     std::string currentAnimationName;
     unsigned int animationIndex = 0;
+
+public:
+    sf::IntRect rect;
 
 public:
     SpriteComponent(const char *filePath)
@@ -115,7 +117,12 @@ public:
 
     void Render(sf::RenderWindow &window) override
     {
+        auto view = window.getView();
+        if (isFixed)
+            window.setView(window.getDefaultView());
         window.draw(*sprite);
+        if (isFixed)
+            window.setView(view);
     }
 };
 #endif

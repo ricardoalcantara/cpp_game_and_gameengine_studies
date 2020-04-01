@@ -9,6 +9,8 @@
 #include "Components/TransformComponent.h"
 #include "Components/SpriteComponent.h"
 #include "Components/KeyboardControlComponent.h"
+#include "Components/CameraComponent.h"
+#include "Components/ScreenLimiterComponent.h"
 
 EntityManager manager;
 AssetManager *Game::assetManager = new AssetManager(&::manager);
@@ -52,16 +54,18 @@ void Game::LoadLevel(int)
     Map map("jungle-tiletexture", 2, 32);
     map.LoadMap("assets/tilemaps/jungle.map", 25, 20);
 
-    Entity &tankEntity(manager.AddEntity("Tank"));
+    Entity &tankEntity(manager.AddEntity("Tank", ENEMY_LAYER));
     tankEntity.AddComponent<TransformComponent>(0.0f, 0.0f, 1.0f, 1.0f, 20.0f, 32.0f, 32.0f, 1.0f);
     tankEntity.AddComponent<SpriteComponent>("tank-image");
 
-    Entity &chopperEntity(manager.AddEntity("Chopper"));
+    Entity &chopperEntity(manager.AddEntity("Chopper", PLAYER_LAYER));
     chopperEntity.AddComponent<TransformComponent>(240.0f, 106.0f, 0.0f, 0.0f, 80.0f, 32.0f, 32.0f, 1.0f);
     chopperEntity.AddComponent<SpriteComponent>("chopper-image", 2, 0.1f, true, false);
     chopperEntity.AddComponent<KeyboardControlComponent>();
+    chopperEntity.AddComponent<ScreenLimiterComponent>(0.0f, 0.0f, WINDOW_WIDTH * 2.0f, WINDOW_HEIGHT * 2.0f);
+    chopperEntity.AddComponent<CameraComponent>();
 
-    Entity &radarEntity(manager.AddEntity("Radar"));
+    Entity &radarEntity(manager.AddEntity("Radar", UI_LAYER));
     radarEntity.AddComponent<TransformComponent>(720.0f, 15.0f, 0.0f, 0.0f, 0.0f, 64.0f, 64.0f, 1.0f);
     radarEntity.AddComponent<SpriteComponent>("radar-image", 8, 0.2f, false, true);
 

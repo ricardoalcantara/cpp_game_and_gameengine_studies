@@ -37,10 +37,6 @@ public:
     {
     }
 
-    void Update(float) override
-    {
-    }
-
     void Render(sf::RenderWindow &window) override
     {
         window.draw(*sprite);

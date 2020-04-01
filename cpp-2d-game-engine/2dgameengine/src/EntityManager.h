@@ -5,6 +5,7 @@
 #include <vector>
 #include "Entity.h"
 #include "Component.h"
+#include "Constants.h"
 
 class EntityManager
 {
@@ -16,8 +17,9 @@ public:
     void Update(float delta);
     void Render(sf::RenderWindow &window);
     bool HasEntities();
-    Entity &AddEntity(std::string entityName);
+    Entity &AddEntity(std::string entityName, LayerType layer);
     std::vector<Entity *> GetEntities() const;
+    std::vector<Entity *> GetEntitiesByLayer(LayerType layer) const;
     size_t GetEntityCount();
 };
 #endif

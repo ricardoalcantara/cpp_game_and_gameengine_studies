@@ -37,13 +37,13 @@ public:
         this->shootKey = shootKey;
     }
 
-    virtual void Initialize()
+    void Initialize()
     {
         transform = owner->GetComponent<TransformComponent>();
         sprite = owner->GetComponent<SpriteComponent>();
     }
 
-    virtual void Update(float)
+    void Update(float)
     {
         transform->velocity.x = 0;
         transform->velocity.y = 0;
@@ -76,6 +76,6 @@ public:
         }
     }
 
-    virtual void Render(sf::RenderWindow &) {}
+    void Render(sf::RenderWindow &) {}
 };
 #endif
