@@ -5,6 +5,17 @@ https://www.udemy.com/course/cpp-2d-game-engine
 
 ## Linux
 
+# LUA
+
+https://www.lua.org/
+
+
+# SOL
+
+https://sol2.readthedocs.io/en/latest/
+
+# SFML
+
 https://github.com/SFML/SFML/wiki/Tutorial%3A-Installing-SFML-dependencies
 
 ```bash

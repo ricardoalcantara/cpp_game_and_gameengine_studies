@@ -8,7 +8,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 set(LIB "./lib")
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(${LIB}/lua-5.3.5)
 add_subdirectory(${LIB}/SFML-2.5.1)
@@ -27,7 +27,11 @@ endif()
 
 include_directories(src/
                     ${LIB}/lua-5.3.5/src
+                    ${LIB}/sol2/include
                     ${LIB}/SFML-2.5.1/include)
+
+file(GLOB VENDORS_SOURCES
+                ${LIB}/sol2/include/sol.hpp)
 
 file(GLOB PROJECT_HEADERS
                         src/*.h)
@@ -35,6 +39,7 @@ file(GLOB PROJECT_SOURCES
                         src/*.cpp)
 
 add_executable(${PROJECT_NAME} 
+                ${VENDORS_SOURCES}
                 ${PROJECT_SOURCES}
                 ${PROJECT_HEADERS})
 
