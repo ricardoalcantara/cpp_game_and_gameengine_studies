@@ -11,6 +11,7 @@
 #include "Components/KeyboardControlComponent.h"
 #include "Components/CameraComponent.h"
 #include "Components/ScreenLimiterComponent.h"
+#include "Components/TextLabelComponent.h"
 
 EntityManager manager;
 AssetManager *Game::assetManager = new AssetManager(&::manager);
@@ -50,6 +51,7 @@ void Game::LoadLevel(int)
     assetManager->AddTexture("chopper-image", "assets/images/chopper-spritesheet.png");
     assetManager->AddTexture("radar-image", "assets/images/radar.png");
     assetManager->AddTexture("jungle-tiletexture", "assets/tilemaps/jungle.png");
+    assetManager->AddFont("charriot-font", "assets/fonts/charriot.ttf");
 
     Map map("jungle-tiletexture", 2, 32);
     map.LoadMap("assets/tilemaps/jungle.map", 25, 20);
@@ -68,6 +70,9 @@ void Game::LoadLevel(int)
     Entity &radarEntity(manager.AddEntity("Radar", UI_LAYER));
     radarEntity.AddComponent<TransformComponent>(720.0f, 15.0f, 0.0f, 0.0f, 0.0f, 64.0f, 64.0f, 1.0f);
     radarEntity.AddComponent<SpriteComponent>("radar-image", 8, 0.2f, false, true);
+
+    Entity &labelLevelNameEntity(manager.AddEntity("Text", UI_LAYER));
+    labelLevelNameEntity.AddComponent<TextLabelComponent>(10, 10, "First Level...", "charriot-font", sf::Color::Red);
 
     for (auto &entity : manager.GetEntities())
     {
