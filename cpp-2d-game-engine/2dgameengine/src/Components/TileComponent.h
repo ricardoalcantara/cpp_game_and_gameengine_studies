@@ -28,8 +28,8 @@ public:
         sprite->setTextureRect(rect);
         sprite->setScale(static_cast<float>(scale), static_cast<float>(scale));
 
-        position.x = x;
-        position.y = y;
+        position.x = static_cast<float>(x);
+        position.y = static_cast<float>(y);
         sprite->setPosition(position);
     }
 

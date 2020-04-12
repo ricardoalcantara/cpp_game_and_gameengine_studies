@@ -14,7 +14,7 @@ private:
 public:
     TextLabelComponent(int x, int y, std::string text, std::string fontFamily, const sf::Color &color)
     {
-        this->text.setPosition(x, y);
+        this->text.setPosition(static_cast<float>(x), static_cast<float>(y));
         this->text.setString(text);
         this->text.setFont(*Game::assetManager->GetFont(fontFamily));
         this->text.setFillColor(color);
