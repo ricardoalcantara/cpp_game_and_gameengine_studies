@@ -1,1 +1,6 @@
+bin/
 build/
+build-*/
+.vs/
+.idea/
+cmake-build-*/
